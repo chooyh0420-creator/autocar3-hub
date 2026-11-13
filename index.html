@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoCar III 연결 도우미</title>
+<meta name="description" content="AIoT AutoCAR III 리모컨 앱 연결 도우미">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>🚗 AutoCar III 연결 도우미</h1>
+    <p class="sub">차량에 연결하고 리모컨 앱을 여는 페이지예요.</p>
+  </header>
+
+  <section class="card">
+    <h2>1. 연결 방식 고르기</h2>
+    <div class="choices">
+      <label class="choice"><input type="radio" name="net" value="192.168.101.101" checked>
+        <span><b>🔌 유선(랜선) 연결</b><small>192.168.101.101</small></span></label>
+      <label class="choice"><input type="radio" name="net" value="192.168.2.1">
+        <span><b>📶 차량 Wi-Fi(핫스팟) 연결</b><small>192.168.2.1 · 휴대폰·태블릿에서도 사용</small></span></label>
+      <label class="choice"><input type="radio" name="net" value="custom">
+        <span><b>✏️ 직접 입력</b><small>공유기에 연결한 경우 등</small></span></label>
+    </div>
+    <input id="customIp" class="ip" type="text" placeholder="예: 192.168.100.227" inputmode="decimal" hidden>
+  </section>
+
+  <section class="card">
+    <h2>2. 리모컨 앱 열기</h2>
+    <a id="openApp" class="btn primary" href="http://192.168.101.101:8080" target="_blank" rel="noopener">🎮 리모컨 앱 열기</a>
+    <a id="openJupyter" class="btn" href="http://192.168.101.101:8888" target="_blank" rel="noopener">💻 코딩 화면(Jupyter) 열기</a>
+    <p class="hint">열리지 않으면 아래 ‘연결 준비’를 확인해 주세요. Jupyter 비밀번호는 <code>soda</code>예요.</p>
+  </section>
+
+  <section class="card">
+    <h2>🛠️ 연결 준비</h2>
+    <details>
+      <summary>유선 연결 — Mac</summary>
+      <ol>
+        <li>랜선을 차량과 Mac(USB 랜 어댑터)에 연결해요.</li>
+        <li>시스템 설정 → 네트워크 → 랜 항목 → 세부사항 → TCP/IP로 들어가요.</li>
+        <li>IPv4 구성을 ‘수동으로’로 바꾸고 IP <code>192.168.101.102</code>, 서브넷 <code>255.255.255.0</code>을 넣어요.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>유선 연결 — Windows</summary>
+      <ol>
+        <li>Win+R → <code>ncpa.cpl</code> → 새 이더넷 우클릭 → 속성으로 들어가요.</li>
+        <li>‘인터넷 프로토콜 버전 4(TCP/IPv4)’를 더블클릭해요.</li>
+        <li>IP <code>192.168.101.102</code>, 서브넷 <code>255.255.255.0</code>을 넣고 확인을 눌러요.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>차량 Wi-Fi(핫스팟) 연결</summary>
+      <ol>
+        <li>기기의 Wi-Fi 목록에서 차량 이름(hostname)으로 된 네트워크에 연결해요. 이름은 부팅할 때마다 바뀌어요.</li>
+        <li>위에서 ‘차량 Wi-Fi’를 고르고 리모컨 앱을 열어요.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>앱이 꺼져 있을 때 켜는 방법</summary>
+      <ol>
+        <li>Jupyter를 열고 Other → Terminal을 실행해요.</li>
+        <li><code>~/Project/python/notebook/autocar_app/start.sh</code>를 입력하고 Enter를 눌러요.</li>
+        <li>끌 때는 <code>~/Project/python/notebook/autocar_app/stop.sh</code>를 입력해요.</li>
+      </ol>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>🎮 리모컨 앱 기능</h2>
+    <ul class="feat">
+      <li>수동 운전 — 전진·후진·대각선, 속도 조절 (누르고 있는 동안만 움직임)</li>
+      <li>자율주행 — 초음파 센서로 장애물을 피하며 주행</li>
+      <li>순찰 돌기 — 사각형 경로 반복, 비상등·순찰 알림음</li>
+      <li>8자 주행</li>
+      <li>스피커 — 경적, 사이렌, 작은 별, 딩동 / 부저 멜로디</li>
+      <li>전조등·후미등·비상등, 카메라 화면, 배터리·거리 표시</li>
+    </ul>
+  </section>
+
+  <section class="card warn">
+    <h2>⚠️ 안전 수칙</h2>
+    <ul>
+      <li>처음에는 바퀴가 바닥에 닿지 않게 올려 두고 시험해 주세요.</li>
+      <li>넓은 바닥에서, 속도 30~40부터 시작해 주세요.</li>
+      <li>문제가 생기면 ‘비상 정지’를 누르거나 차량 전원 스위치를 내려 주세요.</li>
+    </ul>
+  </section>
+
+  <footer>AIoT AutoCAR III · 계명대학교 장학복지팀 체험용</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
